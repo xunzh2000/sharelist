@@ -6,8 +6,6 @@ ShareList 是一个易用的网盘工具，支持快速挂载 GoogleDrive、OneD
 * [功能说明](#功能说明) 
 * [安装](#安装) 
 * [使用示例](#使用示例)   
-  * [挂载GoogleDrive](#挂载GoogleDrive) 
-  * [挂载OneDrive](#挂载挂载OneDrive) 
   * [挂载本地文件](#挂载本地文件) 
   * [挂载GitHub](#挂载GitHub) 
   * [挂载蓝奏云](#挂载蓝奏云) 
@@ -35,51 +33,23 @@ ShareList 是一个易用的网盘工具，支持快速挂载 GoogleDrive、OneD
 
 
 ## 使用示例
-### 挂载GoogleDrive
-#### 1. 使用分享ID挂载
-由[plugins/drive.gd.js](drive.gd)插件实现。  
-```
-挂载标示：gd
-挂载内容：分享的文件ID
-```
+挂载天翼云盘
+ShareList 支持账号密码挂载，所以你不用为没有sk而担心挂载不了。
 
-#### 2. 使用官方API挂载
-由[plugins/drive.gd.api.js](drive.gd.api)插件实现。
-```
-挂载标示：gda  
-挂载内容：  
-  文件(夹)id->应用ID|应用机钥|回调地址|refresh_token     
-  文件(夹)id   
-  /
-```
-ShareList会根据填写的挂载内容的不同形式，自动开启挂载向导，按指示操作即可。   
-
-### 挂载OneDrive
-#### 1. 使用分享ID挂载
-由[plugins/drive.od.js](plugins/drive.od.js)插件实现。  
-```
-挂载标示：od  
-挂载内容：分享的文件ID。 
-``` 
-#### 2. 使用官方API挂载
-由[plugins/drive.od.api.js](plugins/drive.od.api.js)插件实现。   
-```
-挂载标示：oda
+1.账号密码挂载（Cookie方式） 由drive.189cloud.js插件实现。 挂载标示：ctcc 挂载内容：
+//用户名/初始文件夹ID?password=密码 / 建议填写/，ShareList将自动开启挂载向导，按指示填写用户名密码即可。 登录天翼云盘网页版，点击相应的目录，文件夹id就在网址里面。
+2. API方式挂载
+由drive.189cloud.api.js插件实现。
+挂载标示：ctc
 挂载内容：   
-    OneDrive路径->应用ID|应用机钥|回调地址|refresh_token
-    OneDrive路径
+    //应用ID/初始文件夹ID?app_secret=应用机钥&redirect_uri=回调地址&access_token=access_token   
     /
-```
-ShareList会根据填写的挂载内容，自动开启挂载向导，按指示操作即可。  
-对于不符合OneDrive安全要求的域名，将采用中转方式验证，[查看中转页面](https://github.com/reruin/reruin.github.io/blob/master/redirect/onedrive.html)。   
-**注意：由于onedrive修改了政策，个人Microsoft帐户已无法通过向导进行绑定。
-需前往 [Azure管理后台](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) 注册应用并获取  app_id 和 app_secret 。**  
-#### 3. 挂载OneDrive For Business
-由[plugins/drive.odb.js](plugins/drive.odb.js)插件实现。  
-```
-挂载标示：odb  
-挂载内容：分享的url
-```
+建议填写/，ShareList将自动开启挂载向导，按指示操作即可。
+注意：access_token每隔30天需手动更新一次，到期前24小时内访问对应路径时会有更新提示。
+注意：如果你天翼云登录成功，就不要随意修改，因为账号密码有概率出现验证码，如果出现你就登录不上，也就没法使用这个插件了。
+天翼云，和蓝奏云效果还是不错的，不过天翼云会大概率遇到验证码，所以有时候会挂载不了。
+注意：dplayer无法跨域播放，需要启用中转模式。或者你只能启用默认播放器。设置中转很方便，后台折腾即可，看图
+
 
 ### 挂载本地文件
 由[drive.fs.js](app/plugins/drive.fs.js)插件实现。  
@@ -89,30 +59,6 @@ ShareList会根据填写的挂载内容，自动开启挂载向导，按指示�
 ```
 **注意：统一使用unix风格路径，例如 windows D盘 为 ```/d/```。**   
 
-## 挂载天翼云盘
-ShareList 支持账号密码挂载，所以你不用为没有sk而担心挂载不了。
-1. 账号密码挂载（Cookie方式）
-由drive.189cloud.js插件实现。
-挂载标示：ctcc
-挂载内容：  
-    //用户名/初始文件夹ID?password=密码 
-    /
-建议填写/，ShareList将自动开启挂载向导，按指示填写用户名密码即可。
-登录天翼云盘网页版，点击相应的目录，文件夹id就在网址里面。
-
-
-``` 
-**注意：```folderId```是分享链接中```bxxxxxx```部分。**   
-
-插件为 ```mp4/jpg ```等禁止上传的格式提供解析支持，只需在文件名后附加```txt```后缀即可。以mp4为例，将```xxx.mp4```命名为```xxx.mp4.txt```后再上传，插件将自动解析为mp4文件。 
-
-### 挂载h5ai
-由[drive.h5ai.js](plugins/drive.h5ai.js)插件实现，用于访问h5ai目录程序。  
-```
-挂载标示：h5ai   
-挂载路径：http地址
-```
-例如： ```h5ai:https://larsjung.de/h5ai/demo/```   
 
 ### 挂载WebDAV
 由[drive.webdav.js](plugins/drive.webdav.js)插件实现，用于访问WebDAV服务。  
