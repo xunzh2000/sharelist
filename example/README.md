@@ -1,6 +1,6 @@
 # ShareList
 
-ShareList 是一个易用的网盘工具，支持快速挂载 GoogleDrive、OneDrive ，可通过插件扩展功能。
+ShareList 是一个易用的网盘挂载工具，支持快速挂载天翼云、和彩云等网盘，通过webdav在potplayer或者IOS的nplay里实现视频在线播放，效果比tcshare挂载的天翼云播放效果好，但是浏览图片不能显示缩略图，效果不如tcshare。
 
 ## 目录
 * [功能说明](#功能说明) 
