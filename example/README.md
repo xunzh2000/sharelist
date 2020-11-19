@@ -29,7 +29,7 @@ ShareList 是一个易用的网盘工具，支持快速挂载 GoogleDrive、OneD
 - 国际化支持。  
 - WebDAV导出。  
 
-### 挂载天翼云
+### 挂载天翼云、和彩云盘
 ShareList 支持账号密码挂载，所以你不用为没有sk而担心挂载不了。
 
 1.账号密码挂载（Cookie方式） 由drive.189cloud.js插件实现。 挂载标示：ctcc 挂载内容：
