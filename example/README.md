@@ -89,23 +89,18 @@ ShareList会根据填写的挂载内容，自动开启挂载向导，按指示�
 ```
 **注意：统一使用unix风格路径，例如 windows D盘 为 ```/d/```。**   
 
-### 挂载GitHub
-由[plugins/drive.github.js](plugins/drive.github.js)插件实现。用于访问GitHub代码库。有以下两种挂载方式。    
-```
-挂载标示：github   
-挂载内容： 
-  username   
-  username/repo
-```  
-**注意：仅用于浏览，不支持 ```git clone``` 等git操作。**  
+## 挂载天翼云盘
+ShareList 支持账号密码挂载，所以你不用为没有sk而担心挂载不了。
+1. 账号密码挂载（Cookie方式）
+由drive.189cloud.js插件实现。
+挂载标示：ctcc
+挂载内容：  
+    //用户名/初始文件夹ID?password=密码 
+    /
+建议填写/，ShareList将自动开启挂载向导，按指示填写用户名密码即可。
+登录天翼云盘网页版，点击相应的目录，文件夹id就在网址里面。
 
-### 挂载蓝奏云
-由[plugins/drive.lanzou.js](drive.lanzou)插件实现。提供对[蓝奏云](https://www.lanzou.com/)的访问支持。   
-```
-挂载标示：lanzou
-挂载路径：  
-  folderId  
-  password@folderId
+
 ``` 
 **注意：```folderId```是分享链接中```bxxxxxx```部分。**   
 
