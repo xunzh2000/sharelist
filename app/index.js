@@ -15,20 +15,30 @@ const addr = require('./middleware/koa-addr')
 const paths = require('./middleware/koa-paths')
 const render = require('./middleware/koa-render')
 const staticCache = require('koa-static-cache')
+const Router = require('koa-router')
 
 const routers = require('./routers/index')
 const cors = require('@koa/cors')
 const config = require('./config')
 
-const pluginLoad = require('./services/plugin').load
+const { loader , bonjour } = require('./services/plugin')
+const fs = require('fs')
 
 // const proxy = require('./utils/proxy')
 
 const app = new Koa()
 app.proxy = true
-pluginLoad({
+
+const createRouter = () => new Router()
+
+const getWeb = () => app
+
+loader('plugin', {
   dirs: [__dirname + '/plugins',path.resolve(__dirname,'../plugins')],
+  router:createRouter , web:getWeb 
 })
+
+loader('endpoints',{ router:createRouter , web:getWeb })
 
 onerror(app)
 
